@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>세무상담 신청 | 세무회계 변백</title>
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0d0d0d;--bg2:#161616;--bg3:#1f1f1f;--bg4:#282828;
+  --gold:#c9a84c;--gold-l:#ddb96a;--gold-p:rgba(201,168,76,0.12);
+  --w:#fff;--t1:#f2f2f2;--t2:#999;--t3:#555;
+  --bd:rgba(255,255,255,0.07);--bd2:rgba(201,168,76,0.25);
+  --r:12px;--r2:8px;--rs:6px;
+  --font:'Pretendard',-apple-system,'Apple SD Gothic Neo','Noto Sans KR',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);background:var(--bg);color:var(--t1);min-height:100vh;-webkit-font-smoothing:antialiased}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:300;height:56px;background:rgba(13,13,13,0.92);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--bd);display:flex;align-items:center;justify-content:space-between;padding:0 40px}
+.n-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.n-mark{width:28px;height:28px;background:var(--gold);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:#000;letter-spacing:-0.03em}
+.n-name{font-size:14px;font-weight:700;color:var(--w);letter-spacing:-0.03em}
+.n-sub{font-size:9px;font-weight:400;color:var(--t3);letter-spacing:0.08em;margin-top:1px}
+.n-links{display:flex;align-items:center;gap:28px}
+.n-links a{font-size:13px;font-weight:400;color:var(--t2);text-decoration:none;letter-spacing:-0.01em;transition:color .15s}
+.n-links a:hover{color:var(--t1)}
+.n-cta{padding:7px 16px;background:var(--gold);color:#000;border:none;border-radius:var(--rs);font-family:var(--font);font-size:13px;font-weight:700;cursor:pointer;transition:background .15s;text-decoration:none;letter-spacing:-0.01em}
+.n-cta:hover{background:var(--gold-l)}
+.mob-btn{display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:4px;padding:4px}
+.mob-btn span{width:18px;height:1.5px;background:var(--t2);border-radius:2px;display:block}
+
+/* HERO */
+.hero{padding:80px 40px 64px;background:var(--bg)}
+.hero-inner{max-width:1080px;margin:0 auto;display:grid;grid-template-columns:1fr 400px;gap:72px;align-items:start}
+
+.h-eyebrow{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:600;color:var(--gold);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:20px}
+.h-eyebrow::before{content:'';width:4px;height:4px;border-radius:50%;background:var(--gold);display:inline-block}
+.hero h1{font-size:clamp(28px,3.2vw,44px);font-weight:800;color:var(--w);line-height:1.28;letter-spacing:-0.04em;margin-bottom:16px}
+.hero h1 span{color:var(--gold-l)}
+.hero-desc{font-size:15px;font-weight:400;color:var(--t2);line-height:1.75;letter-spacing:-0.01em;margin-bottom:32px;max-width:400px}
+
+/* PROFILE */
+.prof{display:flex;align-items:center;gap:14px;margin-bottom:32px}
+.prof-img{width:52px;height:52px;border-radius:50%;overflow:hidden;border:1.5px solid var(--bd2);flex-shrink:0}
+.prof-img img{width:100%;height:100%;object-fit:cover;object-position:center top}
+.prof-name{font-size:15px;font-weight:700;color:var(--w);letter-spacing:-0.02em;margin-bottom:2px}
+.prof-role{font-size:12px;font-weight:400;color:var(--t3);margin-bottom:7px;letter-spacing:-0.01em}
+.prof-row{display:flex;gap:12px;flex-wrap:wrap}
+.prof-row span{font-size:12px;color:var(--t2);letter-spacing:-0.01em}
+.prof-row strong{color:var(--gold-l);font-weight:600}
+
+/* STATS */
+.stats{display:flex;gap:0;border:1px solid var(--bd);border-radius:var(--r2);overflow:hidden;background:var(--bg2);margin-bottom:0}
+.stat{flex:1;padding:16px;text-align:center;border-right:1px solid var(--bd)}
+.stat:last-child{border-right:none}
+.stat-n{font-size:22px;font-weight:800;color:var(--gold-l);letter-spacing:-0.04em;display:block;margin-bottom:4px}
+.stat-l{font-size:11px;font-weight:400;color:var(--t3);letter-spacing:0.01em}
+
+/* FORM CARD */
+.form-card{background:var(--bg2);border:1px solid var(--bd);border-radius:var(--r);overflow:hidden;position:sticky;top:72px}
+.fc-top{padding:22px 24px 0}
+.fc-top h3{font-size:16px;font-weight:700;color:var(--w);letter-spacing:-0.03em;margin-bottom:4px}
+.fc-top p{font-size:12px;color:var(--t3);margin-bottom:18px;letter-spacing:-0.01em}
+.fc-line{height:1px;background:var(--bd);margin:0 24px}
+.fc-body{padding:18px 24px 22px}
+
+.fg{margin-bottom:12px}
+.fg label{display:block;font-size:11px;font-weight:600;color:var(--t3);margin-bottom:5px;letter-spacing:0.02em;text-transform:uppercase}
+.fg input,.fg select,.fg textarea{width:100%;padding:9px 11px;border:1px solid var(--bd);border-radius:var(--rs);font-family:var(--font);font-size:13px;font-weight:400;color:var(--t1);background:var(--bg3);outline:none;transition:border-color .15s;appearance:none;-webkit-appearance:none;letter-spacing:-0.01em}
+.fg input::placeholder,.fg textarea::placeholder{color:var(--t3)}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--gold);background:var(--bg4)}
+.fg select option{background:var(--bg3);color:var(--t1)}
+.fg textarea{min-height:68px;resize:vertical;line-height:1.55}
+.fg-2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+
+.chips{display:flex;flex-wrap:wrap;gap:5px;margin-top:5px}
+.chip{padding:5px 11px;border:1px solid var(--bd);border-radius:20px;font-size:12px;font-weight:400;color:var(--t3);background:var(--bg3);cursor:pointer;transition:all .15s;user-select:none;letter-spacing:-0.01em}
+.chip:hover{border-color:var(--gold);color:var(--gold-l)}
+.chip.on{background:var(--gold);color:#000;border-color:var(--gold);font-weight:600}
+
+.cks{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-top:5px}
+.ck{display:flex;align-items:center;gap:7px;padding:7px 10px;border:1px solid var(--bd);border-radius:var(--rs);cursor:pointer;font-size:12px;color:var(--t3);transition:all .15s;background:var(--bg3);letter-spacing:-0.01em}
+.ck:hover{border-color:var(--gold);color:var(--t1)}
+.ck input{accent-color:var(--gold);width:13px;height:13px;flex-shrink:0}
+
+.priv{background:var(--bg);border:1px solid var(--bd);border-radius:var(--rs);padding:10px 12px;font-size:11px;color:var(--t3);line-height:1.7;margin-top:4px;letter-spacing:-0.01em}
+.agree{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--t2);cursor:pointer;margin:10px 0 14px;letter-spacing:-0.01em}
+.agree input{accent-color:var(--gold);width:13px;height:13px}
+.sub-btn{width:100%;padding:12px;background:var(--gold);color:#000;border:none;border-radius:var(--rs);font-family:var(--font);font-size:14px;font-weight:700;cursor:pointer;transition:background .15s;letter-spacing:-0.02em}
+.sub-btn:hover{background:var(--gold-l)}
+
+/* INFO BAR */
+.infobar{background:var(--bg2);border-top:1px solid var(--bd);padding:13px 40px}
+.infobar-inner{max-width:1080px;margin:0 auto;display:flex;align-items:center;justify-content:center;gap:36px;flex-wrap:wrap}
+.ib{display:flex;align-items:center;gap:8px}
+.ib svg{width:14px;height:14px;stroke:var(--gold);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+.ib-l{font-size:11px;color:var(--t3);letter-spacing:0.01em}
+.ib-v{font-size:13px;font-weight:600;color:var(--t1);letter-spacing:-0.02em}
+.ib-sep{width:1px;height:20px;background:var(--bd)}
+
+/* TRUST */
+.trustbar{background:var(--bg);border-top:1px solid var(--bd);border-bottom:1px solid var(--bd);padding:20px 40px}
+.trustbar-inner{max-width:1080px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
+.ti{display:flex;align-items:center;gap:10px}
+.ti-ic{width:34px;height:34px;background:var(--gold-p);border:1px solid var(--bd2);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ti-ic svg{width:16px;height:16px;stroke:var(--gold);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.ti-l{font-size:11px;color:var(--t3);letter-spacing:0.01em}
+.ti-v{font-size:13px;font-weight:600;color:var(--t1);margin-top:1px;letter-spacing:-0.02em}
+.t-sep{width:1px;height:24px;background:var(--bd)}
+
+/* SECTIONS */
+.sec{padding:72px 40px}
+.sec-inner{max-width:1080px;margin:0 auto}
+.sec-eyebrow{font-size:11px;font-weight:600;color:var(--gold);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:10px}
+.sec-h{font-size:clamp(22px,2.4vw,32px);font-weight:800;color:var(--w);letter-spacing:-0.04em;line-height:1.25;margin-bottom:8px}
+.sec-sub{font-size:14px;font-weight:400;color:var(--t3);line-height:1.7;letter-spacing:-0.01em;max-width:460px;margin-bottom:40px}
+
+/* SERVICES */
+.sv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.sv{background:var(--bg2);border:1px solid var(--bd);border-radius:var(--r);padding:22px;transition:border-color .2s,transform .2s;cursor:default}
+.sv:hover{border-color:var(--bd2);transform:translateY(-2px)}
+.sv-ic{width:38px;height:38px;background:var(--gold-p);border:1px solid var(--bd2);border-radius:8px;display:flex;align-items:center;justify-content:center;margin-bottom:14px}
+.sv-ic svg{width:18px;height:18px;stroke:var(--gold);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.sv h3{font-size:14px;font-weight:700;color:var(--w);letter-spacing:-0.03em;margin-bottom:7px}
+.sv p{font-size:12px;font-weight:400;color:var(--t3);line-height:1.7;letter-spacing:-0.01em}
+
+/* PROCESS */
+.proc-sec{background:var(--bg2);border-top:1px solid var(--bd);border-bottom:1px solid var(--bd)}
+.proc-grid{display:grid;grid-template-columns:repeat(4,1fr);position:relative}
+.proc-grid::before{content:'';position:absolute;top:27px;left:12.5%;width:75%;height:1px;background:var(--bd2);z-index:0}
+.ps{text-align:center;padding:40px 16px;position:relative;z-index:1}
+.ps-num{width:54px;height:54px;border-radius:50%;background:var(--bg);border:1.5px solid var(--gold);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:18px;font-weight:800;color:var(--gold);letter-spacing:-0.03em}
+.ps h4{font-size:13px;font-weight:700;color:var(--w);letter-spacing:-0.03em;margin-bottom:7px}
+.ps p{font-size:12px;color:var(--t3);line-height:1.65;letter-spacing:-0.01em}
+
+/* EXPERT */
+.exp-card{background:var(--bg2);border:1px solid var(--bd);border-radius:var(--r);padding:28px;display:flex;gap:24px;align-items:center;margin-bottom:16px}
+.exp-photo{width:88px;height:88px;border-radius:50%;overflow:hidden;border:1.5px solid var(--bd2);flex-shrink:0}
+.exp-photo img{width:100%;height:100%;object-fit:cover;object-position:center top}
+.exp-name{font-size:20px;font-weight:800;color:var(--w);letter-spacing:-0.04em;margin-bottom:4px}
+.exp-role{font-size:12px;color:var(--t3);letter-spacing:-0.01em;margin-bottom:14px}
+.exp-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+.exp-tag{padding:3px 10px;background:var(--gold-p);border:1px solid var(--bd2);border-radius:20px;font-size:11px;font-weight:600;color:var(--gold-l);letter-spacing:-0.01em}
+.exp-cts{display:flex;gap:16px;flex-wrap:wrap}
+.exp-ct{font-size:12px;color:var(--t3);letter-spacing:-0.01em}
+.exp-ct strong{color:var(--gold-l);font-weight:600}
+
+.team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.tc{background:var(--bg2);border:1px solid var(--bd);border-radius:var(--r);padding:22px;text-align:center;transition:border-color .2s}
+.tc:hover{border-color:var(--bd2)}
+.tc-av{width:52px;height:52px;border-radius:50%;background:var(--gold-p);border:1.5px solid var(--bd2);display:flex;align-items:center;justify-content:center;margin:0 auto 14px;font-size:18px;font-weight:800;color:var(--gold);letter-spacing:-0.03em}
+.tc h3{font-size:14px;font-weight:700;color:var(--w);letter-spacing:-0.03em;margin-bottom:3px}
+.tc-role{font-size:11px;color:var(--gold);letter-spacing:-0.01em;margin-bottom:10px;font-weight:500}
+.tc-desc{font-size:12px;color:var(--t3);line-height:1.7;letter-spacing:-0.01em}
+
+/* REVIEWS */
+.rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.rc{background:var(--bg2);border:1px solid var(--bd);border-radius:var(--r);padding:22px;transition:border-color .2s}
+.rc:hover{border-color:var(--bd2)}
+.rc-stars{color:var(--gold);font-size:12px;letter-spacing:2px;margin-bottom:10px}
+.rc-text{font-size:13px;color:var(--t2);line-height:1.75;margin-bottom:16px;letter-spacing:-0.01em}
+.rc-auth{display:flex;align-items:center;gap:10px}
+.rc-av{width:30px;height:30px;border-radius:50%;background:var(--gold-p);border:1px solid var(--bd2);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--gold);flex-shrink:0}
+.rc-name{font-size:13px;font-weight:700;color:var(--w);letter-spacing:-0.02em}
+.rc-type{font-size:11px;color:var(--t3);margin-top:1px;letter-spacing:-0.01em}
+
+/* ADMIN */
+.admin-wrap{background:var(--bg2);border-top:1px solid var(--bd)}
+.admin-toggle{width:100%;padding:16px 40px;display:flex;align-items:center;justify-content:space-between;background:none;border:none;color:var(--t3);font-family:var(--font);font-size:13px;font-weight:500;cursor:pointer;transition:color .15s;letter-spacing:-0.01em}
+.admin-toggle:hover{color:var(--t2)}
+.admin-toggle.open{color:var(--t1)}
+.admin-toggle svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;transition:transform .2s}
+.admin-toggle.open svg{transform:rotate(180deg)}
+.admin-panel{display:none;padding:0 40px 48px}
+.admin-panel.show{display:block}
+.admin-inner{max-width:1080px;margin:0 auto}
+
+.cfg{background:var(--bg3);border:1px solid var(--bd2);border-radius:var(--r2);padding:14px 16px;margin-bottom:20px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.cfg svg{width:14px;height:14px;stroke:var(--gold);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+.cfg-txt{font-size:12px;color:var(--t2);flex:1;letter-spacing:-0.01em}
+.cfg-txt strong{color:var(--gold-l)}
+.conn{font-size:11px;color:var(--t3);display:flex;align-items:center;gap:5px;letter-spacing:-0.01em}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--t3)}
+.dot.ok{background:#52c97a}
+.dot.err{background:#e05c5c}
+
+.admin-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:12px}
+.admin-head h3{font-size:20px;font-weight:800;color:var(--w);letter-spacing:-0.04em}
+.ctrl{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.ctrl input,.ctrl select{padding:8px 11px;border:1px solid var(--bd);border-radius:var(--rs);background:var(--bg3);color:var(--t1);font-family:var(--font);font-size:12px;outline:none;transition:border-color .15s;letter-spacing:-0.01em}
+.ctrl input:focus,.ctrl select:focus{border-color:var(--gold)}
+.ctrl input::placeholder{color:var(--t3)}
+.ctrl select option{background:var(--bg3)}
+.ref-btn{padding:8px 14px;background:var(--gold-p);border:1px solid var(--bd2);border-radius:var(--rs);color:var(--gold-l);font-family:var(--font);font-size:12px;font-weight:600;cursor:pointer;transition:all .15s;display:flex;align-items:center;gap:5px;letter-spacing:-0.01em}
+.ref-btn:hover{background:var(--gold);color:#000}
+.ref-btn svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+
+.tbl-wrap{overflow-x:auto;border:1px solid var(--bd);border-radius:var(--r2)}
+table{width:100%;border-collapse:collapse;min-width:780px}
+thead{background:var(--bg3)}
+thead th{padding:11px 14px;text-align:left;font-size:11px;font-weight:600;color:var(--t3);letter-spacing:0.05em;text-transform:uppercase;border-bottom:1px solid var(--bd);white-space:nowrap}
+tbody tr{border-bottom:1px solid var(--bd);transition:background .13s}
+tbody tr:last-child{border-bottom:none}
+tbody tr:hover{background:var(--bg3)}
+tbody td{padding:12px 14px;font-size:13px;color:var(--t1);vertical-align:middle;letter-spacing:-0.01em}
+.badge{display:inline-block;padding:3px 8px;border-radius:20px;font-size:11px;font-weight:600;letter-spacing:-0.01em}
+.b-new{background:rgba(201,168,76,0.12);color:var(--gold-l);border:1px solid var(--bd2)}
+.b-done{background:rgba(82,201,122,0.1);color:#52c97a;border:1px solid rgba(82,201,122,0.2)}
+.b-ing{background:rgba(100,160,255,0.1);color:#6ab0ff;border:1px solid rgba(100,160,255,0.2)}
+.det-btn{padding:4px 10px;background:none;border:1px solid var(--bd);border-radius:var(--rs);color:var(--t3);font-size:11px;cursor:pointer;transition:all .15s;font-family:var(--font);letter-spacing:-0.01em}
+.det-btn:hover{border-color:var(--gold);color:var(--gold-l)}
+.empty{text-align:center;padding:56px 20px;color:var(--t3)}
+.empty svg{width:36px;height:36px;stroke:var(--t3);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;margin:0 auto 12px;display:block}
+.empty p{font-size:13px;letter-spacing:-0.01em}
+
+.pgn{display:flex;align-items:center;justify-content:center;gap:6px;margin-top:16px}
+.pg-btn{width:30px;height:30px;border:1px solid var(--bd);border-radius:var(--rs);background:none;color:var(--t3);font-size:12px;cursor:pointer;transition:all .15s;display:flex;align-items:center;justify-content:center;font-family:var(--font)}
+.pg-btn:hover,.pg-btn.on{border-color:var(--gold);color:var(--gold-l);background:var(--gold-p)}
+
+/* DETAIL MODAL */
+.mov{display:none;position:fixed;inset:0;z-index:999;background:rgba(0,0,0,0.75);backdrop-filter:blur(6px);align-items:center;justify-content:center;padding:20px}
+.mov.show{display:flex}
+.modal{background:var(--bg2);border:1px solid var(--bd);border-radius:16px;padding:28px;max-width:500px;width:100%;max-height:88vh;overflow-y:auto;animation:mIn .22s ease both}
+@keyframes mIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.modal-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:22px}
+.modal-top h3{font-size:17px;font-weight:800;color:var(--w);letter-spacing:-0.04em}
+.mcl{background:none;border:none;color:var(--t3);cursor:pointer;font-size:20px;line-height:1;transition:color .15s;padding:2px}
+.mcl:hover{color:var(--w)}
+.mrow{display:flex;gap:14px;margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid var(--bd)}
+.mrow:last-of-type{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.mlabel{font-size:11px;font-weight:600;color:var(--t3);min-width:72px;flex-shrink:0;padding-top:1px;letter-spacing:0.02em;text-transform:uppercase}
+.mval{font-size:13px;color:var(--t1);line-height:1.6;flex:1;letter-spacing:-0.01em}
+.st-sel{padding:4px 10px;border:1px solid var(--bd2);border-radius:var(--rs);background:var(--bg3);color:var(--gold-l);font-family:var(--font);font-size:12px;outline:none;cursor:pointer;letter-spacing:-0.01em}
+.st-sel option{background:var(--bg3)}
+.m-acts{display:flex;gap:8px;margin-top:20px}
+.m-save{flex:1;padding:10px;background:var(--gold);color:#000;border:none;border-radius:var(--rs);font-family:var(--font);font-size:13px;font-weight:700;cursor:pointer;transition:background .15s;letter-spacing:-0.02em}
+.m-save:hover{background:var(--gold-l)}
+.m-del{padding:10px 14px;background:none;border:1px solid rgba(224,92,92,0.3);border-radius:var(--rs);color:rgba(224,92,92,0.8);font-family:var(--font);font-size:13px;cursor:pointer;transition:all .15s;letter-spacing:-0.01em}
+.m-del:hover{background:rgba(224,92,92,0.08);border-color:rgba(224,92,92,0.5)}
+
+/* CTA */
+.cta{background:var(--bg2);border-top:1px solid var(--bd);padding:72px 40px;text-align:center}
+.cta h2{font-size:clamp(22px,2.4vw,34px);font-weight:800;color:var(--w);letter-spacing:-0.04em;margin-bottom:12px}
+.cta p{font-size:14px;color:var(--t3);max-width:400px;margin:0 auto 28px;line-height:1.7;letter-spacing:-0.01em}
+.cta-btn{display:inline-flex;align-items:center;gap:8px;padding:13px 28px;background:var(--gold);color:#000;border:none;border-radius:var(--rs);font-family:var(--font);font-size:14px;font-weight:700;cursor:pointer;transition:background .15s;text-decoration:none;letter-spacing:-0.02em}
+.cta-btn:hover{background:var(--gold-l)}
+
+/* SUCCESS */
+.sov{display:none;position:fixed;inset:0;z-index:999;background:rgba(0,0,0,0.8);backdrop-filter:blur(6px);align-items:center;justify-content:center}
+.sov.show{display:flex}
+.sov-card{background:var(--bg2);border:1px solid var(--bd);border-radius:16px;padding:36px 28px;text-align:center;max-width:360px;width:90%;animation:mIn .28s ease both}
+.sov-ic{width:60px;height:60px;border-radius:50%;background:rgba(82,201,122,0.1);border:1px solid rgba(82,201,122,0.2);display:flex;align-items:center;justify-content:center;margin:0 auto 18px}
+.sov-ic svg{width:26px;height:26px;stroke:#52c97a;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.sov-card h2{font-size:18px;font-weight:800;color:var(--w);letter-spacing:-0.04em;margin-bottom:8px}
+.sov-card p{font-size:13px;color:var(--t3);line-height:1.7;margin-bottom:22px;letter-spacing:-0.01em}
+.sov-close{padding:10px 28px;background:var(--gold);color:#000;border:none;border-radius:var(--rs);font-family:var(--font);font-size:13px;font-weight:700;cursor:pointer;letter-spacing:-0.02em}
+
+/* FOOTER */
+footer{background:#080808;border-top:1px solid var(--bd);padding:36px 40px 24px;color:var(--t3);font-size:12px;line-height:1.8;letter-spacing:-0.01em}
+.fi{display:flex;justify-content:space-between;gap:2rem;margin-bottom:24px;flex-wrap:wrap}
+.fl-t{font-size:14px;font-weight:800;color:var(--w);letter-spacing:-0.04em;margin-bottom:4px}
+.fl-s{font-size:9px;color:var(--gold);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px}
+.flinks{display:flex;flex-direction:column;gap:6px}
+.flinks a{color:var(--t3);text-decoration:none;font-size:12px;transition:color .15s}
+.flinks a:hover{color:var(--gold-l)}
+.fdiv{border:none;border-top:1px solid var(--bd);margin-bottom:12px}
+
+@media(max-width:960px){
+  nav{padding:0 20px}
+  .hero{padding:80px 20px 48px}
+  .hero-inner{grid-template-columns:1fr;gap:40px}
+  .form-card{position:static}
+  .sv-grid,.team-grid,.rev-grid{grid-template-columns:1fr 1fr}
+  .proc-grid{grid-template-columns:1fr 1fr;gap:0}
+  .proc-grid::before{display:none}
+  .exp-card{flex-direction:column;text-align:center}
+  .exp-tags,.exp-cts{justify-content:center}
+  .t-sep,.ib-sep{display:none}
+  .infobar,.trustbar,.sec,.cta{padding-left:20px;padding-right:20px}
+  .admin-toggle,.admin-panel{padding-left:20px;padding-right:20px}
+  footer{padding:28px 20px 16px}
+  .n-links a:not(.n-cta){display:none}
+}
+@media(max-width:600px){
+  .sv-grid,.team-grid,.rev-grid{grid-template-columns:1fr}
+  .fg-2,.cks{grid-template-columns:1fr}
+  .mob-btn{display:flex}
+  .stats{flex-direction:column}
+  .stat{border-right:none;border-bottom:1px solid var(--bd)}
+  .stat:last-child{border-bottom:none}
+  .infobar-inner{flex-direction:column;align-items:flex-start;gap:10px}
+  .ctrl{flex-direction:column;width:100%}
+  .ctrl input,.ctrl select{width:100%}
+  .admin-head{flex-direction:column;align-items:flex-start}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="n-logo">
+    <div class="n-mark">稅</div>
+    <div><div class="n-name">세무회계 변백</div><div class="n-sub">TAX ACCOUNTING FIRM</div></div>
+  </a>
+  <div class="n-links">
+    <a href="#services">서비스</a>
+    <a href="#process">절차</a>
+    <a href="#team">전문가</a>
+    <a href="#reviews">후기</a>
+    <a href="#consult" class="n-cta">무료 상담</a>
+  </div>
+  <button class="mob-btn" onclick="document.getElementById('consult').scrollIntoView({behavior:'smooth'})">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="h-eyebrow">첫 상담 무료 · 24시간 내 회신</div>
+      <h1>세금 문제,<br><span>전문가와 함께라면</span><br>두렵지 않습니다</h1>
+      <p class="hero-desc">세무회계 변백의 전문 세무사가 개인·법인 세무부터 세무조사 대응까지 정확하고 신속하게 해결해 드립니다.</p>
+      <div class="prof">
+        <div class="prof-img">
+          <img src="https://i.ibb.co/LDSyP4mP/2026-04-16-113054.png" alt="변재형 세무사">
+        </div>
+        <div>
+          <div class="prof-name">변재형 세무사</div>
+          <div class="prof-role">대표 세무사 · 세무회계 변백</div>
+          <div class="prof-row">
+            <span>📞 <strong>02-2088-2456</strong></span>
+            <span>📱 <strong>010-4924-5774</strong></span>
+          </div>
+        </div>
+      </div>
+      <div class="stats">
+        <div class="stat"><span class="stat-n">3,200+</span><div class="stat-l">상담 완료</div></div>
+        <div class="stat"><span class="stat-n">98%</span><div class="stat-l">고객 만족도</div></div>
+        <div class="stat"><span class="stat-n">15년</span><div class="stat-l">전문 경력</div></div>
+      </div>
+    </div>
+
+    <!-- FORM -->
+    <div class="form-card" id="consult">
+      <div class="fc-top">
+        <h3>무료 상담 신청</h3>
+        <p>입력하시면 당일 담당 세무사가 연락드립니다</p>
+      </div>
+      <div class="fc-line"></div>
+      <div class="fc-body">
+        <div class="fg-2">
+          <div class="fg"><label>이름 *</label><input type="text" id="f-name" placeholder="홍길동"></div>
+          <div class="fg"><label>연락처 *</label><input type="tel" id="f-phone" placeholder="010-0000-0000"></div>
+        </div>
+        <div class="fg"><label>이메일</label><input type="email" id="f-email" placeholder="example@email.com"></div>
+        <div class="fg-2">
+          <div class="fg"><label>고객 유형 *</label>
+            <select id="f-type"><option value="">선택</option><option>개인 (근로소득자)</option><option>개인사업자</option><option>법인사업자</option><option>프리랜서·기타</option></select>
+          </div>
+          <div class="fg"><label>상담 방식 *</label>
+            <select id="f-method"><option value="">선택</option><option>전화 상담</option><option>방문 상담</option><option>화상 상담</option></select>
+          </div>
+        </div>
+        <div class="fg"><label>상담 분야</label>
+          <div class="cks">
+            <label class="ck"><input type="checkbox"> 종합소득세</label>
+            <label class="ck"><input type="checkbox"> 부가가치세</label>
+            <label class="ck"><input type="checkbox"> 법인세</label>
+            <label class="ck"><input type="checkbox"> 양도소득세</label>
+            <label class="ck"><input type="checkbox"> 상속·증여세</label>
+            <label class="ck"><input type="checkbox"> 세무조사</label>
+          </div>
+        </div>
+        <div class="fg"><label>희망 시간대</label>
+          <div class="chips">
+            <span class="chip" onclick="this.classList.toggle('on')">오전 9–10시</span>
+            <span class="chip" onclick="this.classList.toggle('on')">10–11시</span>
+            <span class="chip" onclick="this.classList.toggle('on')">오후 1–2시</span>
+            <span class="chip" onclick="this.classList.toggle('on')">2–4시</span>
+            <span class="chip" onclick="this.classList.toggle('on')">4–6시</span>
+          </div>
+        </div>
+        <div class="fg"><label>문의 내용 *</label><textarea id="f-content" placeholder="세무 상황을 간략히 적어주세요."></textarea></div>
+        <div class="priv">수집 항목: 이름, 연락처, 이메일 / 목적: 상담 연결 / 보유기간: 상담 완료 후 즉시 파기</div>
+        <label class="agree"><input type="checkbox" id="f-agree"> 개인정보 수집·이용에 동의합니다 (필수)</label>
+        <button class="sub-btn" id="sub-btn" onclick="submitForm()">상담 신청하기 →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INFO BAR -->
+<div class="infobar">
+  <div class="infobar-inner">
+    <div class="ib"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.4 3.18 2 2 0 012 .91h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.91 8.09a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92z"/></svg><div><div class="ib-l">대표전화</div><div class="ib-v">02-2088-2456</div></div></div>
+    <div class="ib-sep"></div>
+    <div class="ib"><svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18" stroke-width="2.5"/></svg><div><div class="ib-l">휴대전화</div><div class="ib-v">010-4924-5774</div></div></div>
+    <div class="ib-sep"></div>
+    <div class="ib"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><div><div class="ib-l">이메일</div><div class="ib-v">byun@byunbaek.com</div></div></div>
+    <div class="ib-sep"></div>
+    <div class="ib"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><div><div class="ib-l">주소</div><div class="ib-v">서울 양천구 목동동로 339, 목동트윈빌 2층 236호</div></div></div>
+  </div>
+</div>
+
+<!-- TRUST -->
+<div class="trustbar">
+  <div class="trustbar-inner">
+    <div class="ti"><div class="ti-ic"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div><div class="ti-l">공인 자격</div><div class="ti-v">세무사 등록</div></div></div>
+    <div class="t-sep"></div>
+    <div class="ti"><div class="ti-ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div><div><div class="ti-l">응대 시간</div><div class="ti-v">24시간 내 회신</div></div></div>
+    <div class="t-sep"></div>
+    <div class="ti"><div class="ti-ic"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div><div><div class="ti-l">누적 상담</div><div class="ti-v">3,200건 이상</div></div></div>
+    <div class="t-sep"></div>
+    <div class="ti"><div class="ti-ic"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><div><div class="ti-l">고객 만족도</div><div class="ti-v">98% 만족</div></div></div>
+    <div class="t-sep"></div>
+    <div class="ti"><div class="ti-ic"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div><div><div class="ti-l">SNS</div><div class="ti-v">카카오 · 인스타그램</div></div></div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="sec" id="services">
+  <div class="sec-inner">
+    <div class="sec-eyebrow">서비스</div>
+    <h2 class="sec-h">어떤 세무 문제든<br>전문적으로 해결합니다</h2>
+    <p class="sec-sub">개인부터 법인까지 모든 세무 이슈에 맞는 맞춤 솔루션을 제공합니다.</p>
+    <div class="sv-grid">
+      <div class="sv"><div class="sv-ic"><svg viewBox="0 0 24 24"><path d="M20 7H4a2 2 0 00-2 2v6a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2z"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg></div><h3>종합소득세 신고</h3><p>사업·근로·금융소득을 정확하게 신고하여 최적의 절세 전략을 수립합니다.</p></div>
+      <div class="sv"><div class="sv-ic"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div><h3>법인세·부가가치세</h3><p>법인 세무 신고부터 부가세 환급까지 기업 세무 전 과정을 지원합니다.</p></div>
+      <div class="sv"><div class="sv-ic"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div><h3>양도·상속·증여세</h3><p>부동산·주식 양도 및 가족 간 재산 이전 시 세금을 최소화합니다.</p></div>
+      <div class="sv"><div class="sv-ic"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><h3>세무조사 대응</h3><p>세무조사 통보 즉시 전략적 대응과 서류 준비로 최소 추징을 목표합니다.</p></div>
+      <div class="sv"><div class="sv-ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div><h3>세금 신고 대리</h3><p>각종 세금 신고를 전문가가 직접 대리하여 기한 내 정확한 신고를 보장합니다.</p></div>
+      <div class="sv"><div class="sv-ic"><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div><h3>절세 컨설팅</h3><p>장기적 관점의 합법적 절세 포트폴리오를 설계하여 최대한의 절감을 실현합니다.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="sec proc-sec" id="process">
+  <div class="sec-inner">
+    <div class="sec-eyebrow">상담 절차</div>
+    <h2 class="sec-h" style="margin-bottom:40px">간단한 4단계로 시작됩니다</h2>
+    <div class="proc-grid">
+      <div class="ps"><div class="ps-num">1</div><h4>신청서 작성</h4><p>온라인 폼에 기본 정보와 상담 내용을 입력합니다</p></div>
+      <div class="ps"><div class="ps-num">2</div><h4>담당자 배정</h4><p>24시간 내 전문 세무사가 배정되어 연락드립니다</p></div>
+      <div class="ps"><div class="ps-num">3</div><h4>무료 초기 상담</h4><p>세무 상황을 파악하고 맞춤 솔루션 방향을 제시합니다</p></div>
+      <div class="ps"><div class="ps-num">4</div><h4>전문 서비스 진행</h4><p>계약 후 세무신고·조사 대응 등을 진행합니다</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="sec" id="team">
+  <div class="sec-inner">
+    <div class="sec-eyebrow">전문가</div>
+    <h2 class="sec-h">경험과 신뢰로 함께합니다</h2>
+    <p class="sec-sub" style="margin-bottom:24px">세무회계 변백의 전문 세무사가 직접 해결합니다.</p>
+    <div class="exp-card">
+      <div class="exp-photo"><img src="https://i.ibb.co/LDSyP4mP/2026-04-16-113054.png" alt="변재형 세무사"></div>
+      <div>
+        <div class="exp-name">변재형 세무사</div>
+        <div class="exp-role">대표 세무사 · 세무회계 변백 (TAX ACCOUNTING FIRM)</div>
+        <div class="exp-tags">
+          <span class="exp-tag">종합소득세</span><span class="exp-tag">법인세</span><span class="exp-tag">양도·상속·증여세</span><span class="exp-tag">세무조사</span><span class="exp-tag">절세 컨설팅</span>
+        </div>
+        <div class="exp-cts">
+          <span class="exp-ct">📞 <strong>02-2088-2456</strong></span>
+          <span class="exp-ct">📱 <strong>010-4924-5774</strong></span>
+          <span class="exp-ct">✉️ <strong>byun@byunbaek.com</strong></span>
+          <span class="exp-ct">📍 서울 양천구 목동동로 339, 목동트윈빌 2층 236호</span>
+        </div>
+      </div>
+    </div>
+    <div class="team-grid">
+      <div class="tc"><div class="tc-av">稅</div><h3>세무 신고 전문팀</h3><div class="tc-role">종합소득세 · 부가가치세</div><p class="tc-desc">개인사업자·프리랜서 특화<br>연간 500+ 건 신고 처리</p></div>
+      <div class="tc"><div class="tc-av">法</div><h3>법인세무 전문팀</h3><div class="tc-role">법인세 · 세무조사 대응</div><p class="tc-desc">중소기업 세무 200+ 건<br>세무조사 최소 추징 전략</p></div>
+      <div class="tc"><div class="tc-av">資</div><h3>자산세무 전문팀</h3><div class="tc-role">양도세 · 상속·증여세</div><p class="tc-desc">부동산·주식 양도 전문<br>합법적 절세 플랜 설계</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="sec" id="reviews" style="background:var(--bg2);border-top:1px solid var(--bd)">
+  <div class="sec-inner">
+    <div class="sec-eyebrow">고객 후기</div>
+    <h2 class="sec-h" style="margin-bottom:40px">실제 고객들의 이야기</h2>
+    <div class="rev-grid">
+      <div class="rc"><div class="rc-stars">★★★★★</div><p class="rc-text">세무조사 통보를 받고 당황했는데, 즉각 대응해주셔서 추징세액을 크게 줄일 수 있었습니다. 전문성이 남다릅니다.</p><div class="rc-auth"><div class="rc-av">이</div><div><div class="rc-name">이○○ 대표</div><div class="rc-type">제조업 법인사업자</div></div></div></div>
+      <div class="rc"><div class="rc-stars">★★★★★</div><p class="rc-text">부동산 매도 시 양도세가 막막했는데, 절세 방법을 꼼꼼히 안내해 주셔서 수백만 원을 절약했어요.</p><div class="rc-auth"><div class="rc-av">최</div><div><div class="rc-name">최○○ 님</div><div class="rc-type">근로소득자</div></div></div></div>
+      <div class="rc"><div class="rc-stars">★★★★★</div><p class="rc-text">프리랜서 세금 신고가 늘 어려웠는데 친절하고 꼼꼼하게 처리해주셨어요. 매년 이용하고 있습니다.</p><div class="rc-auth"><div class="rc-av">박</div><div><div class="rc-name">박○○ 님</div><div class="rc-type">프리랜서 디자이너</div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ADMIN -->
+<div class="admin-wrap" id="admin">
+  <button class="admin-toggle" id="adminToggle" onclick="toggleAdmin()">
+    <span>🔐 &nbsp;상담 신청 내역 관리</span>
+    <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+  </button>
+  <div class="admin-panel" id="adminPanel">
+    <div class="admin-inner">
+      <div class="cfg">
+        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <span class="cfg-txt"><strong>Supabase</strong> 연결 설정 — URL과 Anon Key를 입력하세요</span>
+        <span class="conn"><span class="dot" id="connDot"></span><span id="connStatus">미연결</span></span>
+      </div>
+      <div class="fg-2" style="margin-bottom:20px">
+        <div class="fg"><label>Supabase URL</label><input type="text" id="sb-url" placeholder="https://xxxx.supabase.co" oninput="saveConfig()"></div>
+        <div class="fg"><label>Anon Key</label><input type="password" id="sb-key" placeholder="eyJhbGci..." oninput="saveConfig()"></div>
+      </div>
+      <div class="admin-head">
+        <h3>상담 신청 내역</h3>
+        <div class="ctrl">
+          <input type="text" id="srch" placeholder="이름, 연락처 검색..." oninput="filterData()" style="width:180px">
+          <select id="flt-status" onchange="filterData()">
+            <option value="">전체 상태</option>
+            <option value="new">신규</option>
+            <option value="ing">진행중</option>
+            <option value="done">완료</option>
+          </select>
+          <select id="flt-type" onchange="filterData()">
+            <option value="">전체 유형</option>
+            <option>개인 (근로소득자)</option>
+            <option>개인사업자</option>
+            <option>법인사업자</option>
+            <option>프리랜서·기타</option>
+          </select>
+          <button class="ref-btn" onclick="loadData()">
+            <svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/></svg>
+            새로고침
+          </button>
+        </div>
+      </div>
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>#</th><th>신청일시</th><th>이름</th><th>연락처</th><th>유형</th><th>상담방식</th><th>분야</th><th>상태</th><th>상세</th></tr>
+          </thead>
+          <tbody id="tbl-body">
+            <tr><td colspan="9"><div class="empty"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg><p>Supabase 연결 후 새로고침을 눌러주세요</p></div></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="pgn" id="pgn"></div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<section class="cta">
+  <h2>지금 바로 무료 상담을 신청하세요</h2>
+  <p>복잡한 세금 문제, 더 이상 혼자 고민하지 마세요.<br>세무회계 변백이 맞춤형 솔루션을 제시해드립니다.</p>
+  <a href="#consult" class="cta-btn" onclick="event.preventDefault();document.getElementById('consult').scrollIntoView({behavior:'smooth'})">무료 상담 신청하기 →</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="fi">
+    <div>
+      <div class="fl-t">세무회계 변백</div>
+      <div class="fl-s">Tax Accounting Firm</div>
+      <p>서울특별시 양천구 목동동로 339, 목동트윈빌 2층 236호<br>Tel. 02-2088-2456 &nbsp;|&nbsp; Fax. 02-6919-2457 &nbsp;|&nbsp; byun@byunbaek.com</p>
+    </div>
+    <div class="flinks">
+      <a href="#">서비스 소개</a><a href="#">전문가 소개</a><a href="#">고객 후기</a>
+      <a href="#">카카오채널: 세무회계 변백</a>
+      <a href="#">인스타그램: @cta_byun</a>
+      <a href="#">개인정보처리방침</a>
+    </div>
+    <div>
+      <p style="color:var(--t2);font-weight:600;margin-bottom:6px">상담 가능 시간</p>
+      <p>평일 09:00 – 18:00<br>토요일 09:00 – 13:00<br>일요일·공휴일 휴무</p>
+    </div>
+  </div>
+  <hr class="fdiv">
+  <p>© 2025 세무회계 변백 (TAX ACCOUNTING FIRM). All rights reserved.</p>
+</footer>
+
+<!-- DETAIL MODAL -->
+<div class="mov" id="mov">
+  <div class="modal">
+    <div class="modal-top">
+      <h3>상담 신청 상세</h3>
+      <button class="mcl" onclick="closeModal()">✕</button>
+    </div>
+    <div id="modal-content"></div>
+    <div class="m-acts">
+      <button class="m-save" onclick="saveStatus()">상태 저장</button>
+      <button class="m-del" onclick="deleteRecord()">삭제</button>
+    </div>
+  </div>
+</div>
+
+<!-- SUCCESS -->
+<div class="sov" id="sov">
+  <div class="sov-card">
+    <div class="sov-ic"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></div>
+    <h2>상담 신청 완료!</h2>
+    <p>소중한 신청 감사합니다.<br>영업일 기준 24시간 이내에<br>담당 세무사가 직접 연락드리겠습니다.</p>
+    <button class="sov-close" onclick="document.getElementById('sov').classList.remove('show')">확인</button>
+  </div>
+</div>
+
+<script>
+var SB_URL='',SB_KEY='',allData=[],filteredData=[],curPage=1,perPage=10,curId=null;
+
+function saveConfig(){
+  SB_URL=document.getElementById('sb-url').value.trim();
+  SB_KEY=document.getElementById('sb-key').value.trim();
+}
+
+function toggleAdmin(){
+  var p=document.getElementById('adminPanel'),t=document.getElementById('adminToggle');
+  p.classList.toggle('show');t.classList.toggle('open');
+}
+
+async function submitForm(){
+  var n=document.getElementById('f-name').value.trim();
+  var p=document.getElementById('f-phone').value.trim();
+  var t=document.getElementById('f-type').value;
+  var m=document.getElementById('f-method').value;
+  var c=document.getElementById('f-content').value.trim();
+  var a=document.getElementById('f-agree').checked;
+  if(!n){alert('이름을 입력해주세요.');return}
+  if(!p){alert('연락처를 입력해주세요.');return}
+  if(!t){alert('고객 유형을 선택해주세요.');return}
+  if(!m){alert('상담 방식을 선택해주세요.');return}
+  if(!c){alert('문의 내용을 입력해주세요.');return}
+  if(!a){alert('개인정보 수집·이용에 동의해주세요.');return}
+
+  var fields=[];
+  document.querySelectorAll('.cks .ck input:checked').forEach(function(el){fields.push(el.parentElement.textContent.trim())});
+  var times=[];
+  document.querySelectorAll('.chip.on').forEach(function(el){times.push(el.textContent.trim())});
+
+  var btn=document.getElementById('sub-btn');
+  btn.disabled=true;btn.textContent='신청 중...';
+
+  if(SB_URL&&SB_KEY){
+    try{
+      var res=await fetch(SB_URL+'/rest/v1/consultations',{
+        method:'POST',
+        headers:{'Content-Type':'application/json','apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Prefer':'return=minimal'},
+        body:JSON.stringify({name:n,phone:p,email:document.getElementById('f-email').value.trim(),client_type:t,method:m,fields:fields.join(', '),preferred_time:times.join(', '),content:c,status:'new',created_at:new Date().toISOString()})
+      });
+      if(!res.ok)throw new Error('서버 오류');
+    }catch(e){console.warn('Supabase 저장 실패:',e)}
+  }
+
+  document.getElementById('sov').classList.add('show');
+  ['f-name','f-phone','f-email','f-content'].forEach(function(id){document.getElementById(id).value=''});
+  document.getElementById('f-type').value='';document.getElementById('f-method').value='';
+  document.getElementById('f-agree').checked=false;
+  document.querySelectorAll('.chip').forEach(function(c){c.classList.remove('on')});
+  document.querySelectorAll('.cks input').forEach(function(c){c.checked=false});
+  btn.disabled=false;btn.textContent='상담 신청하기 →';
+}
+
+async function loadData(){
+  if(!SB_URL||!SB_KEY){
+    document.getElementById('tbl-body').innerHTML='<tr><td colspan="9"><div class="empty"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg><p>Supabase URL과 Key를 먼저 입력해주세요</p></div></td></tr>';
+    return;
+  }
+  try{
+    var res=await fetch(SB_URL+'/rest/v1/consultations?order=created_at.desc&select=*',{
+      headers:{'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY}
+    });
+    if(!res.ok)throw new Error();
+    allData=await res.json();
+    document.getElementById('connDot').className='dot ok';
+    document.getElementById('connStatus').textContent='연결됨';
+    filterData();
+  }catch(e){
+    document.getElementById('connDot').className='dot err';
+    document.getElementById('connStatus').textContent='연결 실패';
+    document.getElementById('tbl-body').innerHTML='<tr><td colspan="9"><div class="empty"><p>연결에 실패했습니다. URL과 Key를 확인해주세요</p></div></td></tr>';
+  }
+}
+
+function filterData(){
+  var s=document.getElementById('srch').value.toLowerCase();
+  var fs=document.getElementById('flt-status').value;
+  var ft=document.getElementById('flt-type').value;
+  filteredData=allData.filter(function(r){
+    var ms=!s||(r.name||'').toLowerCase().includes(s)||(r.phone||'').includes(s);
+    var mst=!fs||r.status===fs;
+    var mft=!ft||r.client_type===ft;
+    return ms&&mst&&mft;
+  });
+  curPage=1;renderTable();
+}
+
+function renderTable(){
+  var start=(curPage-1)*perPage,end=start+perPage,rows=filteredData.slice(start,end);
+  var tb=document.getElementById('tbl-body');
+  if(!rows.length){tb.innerHTML='<tr><td colspan="9"><div class="empty"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><p>검색 결과가 없습니다</p></div></td></tr>';renderPgn();return;}
+  var map={new:'<span class="badge b-new">신규</span>',ing:'<span class="badge b-ing">진행중</span>',done:'<span class="badge b-done">완료</span>'};
+  tb.innerHTML=rows.map(function(r,i){
+    var dt=r.created_at?new Date(r.created_at).toLocaleString('ko-KR',{year:'2-digit',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit'}):'—';
+    return '<tr><td style="color:var(--t3)">'+(start+i+1)+'</td><td style="color:var(--t3);font-size:12px">'+dt+'</td><td style="font-weight:600">'+esc(r.name||'')+'</td><td>'+esc(r.phone||'')+'</td><td style="font-size:12px;color:var(--t2)">'+esc(r.client_type||'')+'</td><td style="font-size:12px;color:var(--t2)">'+esc(r.method||'')+'</td><td style="font-size:12px;color:var(--t3)">'+esc((r.fields||'').substring(0,20)+(r.fields&&r.fields.length>20?'…':''))+'</td><td>'+(map[r.status]||map.new)+'</td><td><button class="det-btn" onclick="openModal(\''+r.id+'\')">상세</button></td></tr>';
+  }).join('');
+  renderPgn();
+}
+
+function renderPgn(){
+  var total=Math.ceil(filteredData.length/perPage),pg=document.getElementById('pgn');
+  if(total<=1){pg.innerHTML='';return;}
+  var h='';
+  for(var i=1;i<=total;i++)h+='<button class="pg-btn'+(i===curPage?' on':'')+'" onclick="goPage('+i+')">'+i+'</button>';
+  pg.innerHTML=h;
+}
+
+function goPage(p){curPage=p;renderTable();}
+
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+
+function openModal(id){
+  curId=id;
+  var r=allData.find(function(x){return x.id===id||String(x.id)===String(id)});
+  if(!r)return;
+  var dt=r.created_at?new Date(r.created_at).toLocaleString('ko-KR'):'—';
+  var statusMap={new:'신규',ing:'진행중',done:'완료'};
+  document.getElementById('modal-content').innerHTML=
+    '<div class="mrow"><div class="mlabel">신청일시</div><div class="mval">'+dt+'</div></div>'+
+    '<div class="mrow"><div class="mlabel">이름</div><div class="mval" style="font-weight:700">'+esc(r.name||'')+'</div></div>'+
+    '<div class="mrow"><div class="mlabel">연락처</div><div class="mval">'+esc(r.phone||'')+'</div></div>'+
+    '<div class="mrow"><div class="mlabel">이메일</div><div class="mval">'+esc(r.email||'—')+'</div></div>'+
+    '<div class="mrow"><div class="mlabel">유형</div><div class="mval">'+esc(r.client_type||'')+'</div></div>'+
+    '<div class="mrow"><div class="mlabel">상담방식</div><div class="mval">'+esc(r.method||'')+'</div></div>'+
+    '<div class="mrow"><div class="mlabel">분야</div><div class="mval">'+esc(r.fields||'—')+'</div></div>'+
+    '<div class="mrow"><div class="mlabel">희망시간</div><div class="mval">'+esc(r.preferred_time||'—')+'</div></div>'+
+    '<div class="mrow"><div class="mlabel">문의내용</div><div class="mval" style="line-height:1.75">'+esc(r.content||'')+'</div></div>'+
+    '<div class="mrow"><div class="mlabel">상태</div><div class="mval"><select class="st-sel" id="modal-status"><option value="new"'+(r.status==='new'?' selected':'')+'>신규</option><option value="ing"'+(r.status==='ing'?' selected':'')+'>진행중</option><option value="done"'+(r.status==='done'?' selected':'')+'>완료</option></select></div></div>';
+  document.getElementById('mov').classList.add('show');
+}
+
+function closeModal(){document.getElementById('mov').classList.remove('show');curId=null;}
+
+async function saveStatus(){
+  if(!curId||!SB_URL||!SB_KEY)return;
+  var st=document.getElementById('modal-status').value;
+  try{
+    await fetch(SB_URL+'/rest/v1/consultations?id=eq.'+curId,{
+      method:'PATCH',
+      headers:{'Content-Type':'application/json','apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY},
+      body:JSON.stringify({status:st})
+    });
+    var r=allData.find(function(x){return String(x.id)===String(curId)});
+    if(r)r.status=st;
+    filterData();closeModal();
+  }catch(e){alert('저장 실패');}
+}
+
+async function deleteRecord(){
+  if(!curId||!SB_URL||!SB_KEY||!confirm('삭제하시겠습니까?'))return;
+  try{
+    await fetch(SB_URL+'/rest/v1/consultations?id=eq.'+curId,{
+      method:'DELETE',
+      headers:{'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY}
+    });
+    allData=allData.filter(function(x){return String(x.id)!==String(curId)});
+    filterData();closeModal();
+  }catch(e){alert('삭제 실패');}
+}
+
+document.getElementById('mov').addEventListener('click',function(e){if(e.target===this)closeModal();});
+document.getElementById('sov').addEventListener('click',function(e){if(e.target===this)this.classList.remove('show');});
+</script>
+</body>
+</html>
