@@ -580,6 +580,32 @@ footer{background:#080808;border-top:1px solid var(--bd);padding:36px 40px 24px;
   <p>© 2025 세무회계 변백 (TAX ACCOUNTING FIRM). All rights reserved.</p>
 </footer>
 
+<!-- PIN MODAL -->
+<div class="mov" id="pin-ov">
+  <div class="modal" style="max-width:300px;text-align:center">
+    <div class="modal-top" style="justify-content:center;margin-bottom:18px">
+      <h3>🔐 관리자 확인</h3>
+    </div>
+    <input id="pin-input" type="password" maxlength="4" inputmode="numeric" readonly
+      style="width:140px;font-size:28px;font-weight:800;letter-spacing:12px;text-align:center;padding:12px;border:1px solid var(--bd2);border-radius:var(--rs);background:var(--bg3);color:var(--gold-l);outline:none;margin-bottom:8px">
+    <div id="pin-err" style="display:none;font-size:12px;color:#e05c5c;margin-bottom:8px">비밀번호가 틀렸습니다</div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px">
+      <button class="sub-btn" style="padding:14px;font-size:18px" onclick="pinKey('1')">1</button>
+      <button class="sub-btn" style="padding:14px;font-size:18px" onclick="pinKey('2')">2</button>
+      <button class="sub-btn" style="padding:14px;font-size:18px" onclick="pinKey('3')">3</button>
+      <button class="sub-btn" style="padding:14px;font-size:18px" onclick="pinKey('4')">4</button>
+      <button class="sub-btn" style="padding:14px;font-size:18px" onclick="pinKey('5')">5</button>
+      <button class="sub-btn" style="padding:14px;font-size:18px" onclick="pinKey('6')">6</button>
+      <button class="sub-btn" style="padding:14px;font-size:18px" onclick="pinKey('7')">7</button>
+      <button class="sub-btn" style="padding:14px;font-size:18px" onclick="pinKey('8')">8</button>
+      <button class="sub-btn" style="padding:14px;font-size:18px" onclick="pinKey('9')">9</button>
+      <button class="sub-btn" style="padding:14px;font-size:18px;background:var(--bg3);color:var(--t3)" onclick="pinKey('del')">⌫</button>
+      <button class="sub-btn" style="padding:14px;font-size:18px" onclick="pinKey('0')">0</button>
+      <button class="sub-btn" style="padding:14px;font-size:18px;background:var(--bg3);color:var(--t3)" onclick="document.getElementById('pin-ov').classList.remove('show');document.getElementById('pin-input').value=''">✕</button>
+    </div>
+  </div>
+</div>
+
 <!-- DETAIL MODAL -->
 <div class="mov" id="mov">
   <div class="modal">
@@ -615,8 +641,34 @@ function saveConfig(){
 
 function toggleAdmin(){
   var p=document.getElementById('adminPanel'),t=document.getElementById('adminToggle');
-  p.classList.toggle('show');t.classList.toggle('open');
+  if(p.classList.contains('show')){p.classList.remove('show');t.classList.remove('open');return;}
+  document.getElementById('pin-ov').classList.add('show');
+  setTimeout(function(){document.getElementById('pin-input').focus();},100);
 }
+
+function pinKey(v){
+  var inp=document.getElementById('pin-input');
+  if(v==='del'){inp.value=inp.value.slice(0,-1);}
+  else if(inp.value.length<4){inp.value+=v;}
+  if(inp.value.length===4){
+    if(inp.value==='0523'){
+      document.getElementById('pin-ov').classList.remove('show');
+      inp.value='';
+      document.getElementById('adminPanel').classList.add('show');
+      document.getElementById('adminToggle').classList.add('open');
+    } else {
+      document.getElementById('pin-err').style.display='block';
+      setTimeout(function(){inp.value='';document.getElementById('pin-err').style.display='none';},800);
+    }
+  }
+}
+
+document.addEventListener('keydown',function(e){
+  if(!document.getElementById('pin-ov').classList.contains('show'))return;
+  if(e.key>='0'&&e.key<='9')pinKey(e.key);
+  if(e.key==='Backspace')pinKey('del');
+  if(e.key==='Escape'){document.getElementById('pin-ov').classList.remove('show');document.getElementById('pin-input').value='';}
+});
 
 async function submitForm(){
   var n=document.getElementById('f-name').value.trim();
