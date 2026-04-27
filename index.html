@@ -8,10 +8,10 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#0a0f0a;--bg2:#111611;--bg3:#182018;--bg4:#1f2a1f;
-  --gold:#2d5a2d;--gold-l:#4a9a4a;--gold-p:rgba(45,90,45,0.13);
-  --w:#fff;--t1:#eef2ee;--t2:#8a9e8a;--t3:#4a5e4a;
-  --bd:rgba(255,255,255,0.07);--bd2:rgba(74,154,74,0.28);
+  --bg:#0d0d0d;--bg2:#161616;--bg3:#1f1f1f;--bg4:#282828;
+  --gold:#c9a84c;--gold-l:#ddb96a;--gold-p:rgba(201,168,76,0.12);
+  --w:#fff;--t1:#f2f2f2;--t2:#999;--t3:#555;
+  --bd:rgba(255,255,255,0.07);--bd2:rgba(201,168,76,0.25);
   --r:12px;--r2:8px;--rs:6px;
   --font:'Pretendard',-apple-system,'Apple SD Gothic Neo','Noto Sans KR',sans-serif;
 }
@@ -27,8 +27,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:300;height:56px;background:rgba(
 .n-links{display:flex;align-items:center;gap:28px}
 .n-links a{font-size:13px;font-weight:400;color:var(--t2);text-decoration:none;letter-spacing:-0.01em;transition:color .15s}
 .n-links a:hover{color:var(--t1)}
-.n-cta{padding:7px 18px;background:linear-gradient(135deg,#2d5a2d,#4a9a4a);color:#fff;border:none;border-radius:var(--rs);font-family:var(--font);font-size:13px;font-weight:700;cursor:pointer;transition:all .2s;text-decoration:none;letter-spacing:-0.01em;box-shadow:0 0 16px rgba(74,154,74,0.35)}
-.n-cta:hover{background:linear-gradient(135deg,#3a7a3a,#5ab05a);box-shadow:0 0 24px rgba(74,154,74,0.55)}
+.n-cta{padding:7px 16px;background:var(--gold);color:#000;border:none;border-radius:var(--rs);font-family:var(--font);font-size:13px;font-weight:700;cursor:pointer;transition:background .15s;text-decoration:none;letter-spacing:-0.01em}
+.n-cta:hover{background:var(--gold-l)}
 .mob-btn{display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:4px;padding:4px}
 .mob-btn span{width:18px;height:1.5px;background:var(--t2);border-radius:2px;display:block}
 
@@ -104,12 +104,12 @@ nav{position:fixed;top:0;left:0;right:0;z-index:300;height:56px;background:rgba(
 .step-nav{display:flex;gap:8px;margin-top:4px}
 .btn-prev{flex:0 0 auto;padding:12px 16px;background:none;border:1px solid var(--bd);border-radius:var(--rs);color:var(--t3);font-family:var(--font);font-size:13px;cursor:pointer;transition:all .15s}
 .btn-prev:hover{border-color:var(--gold-l);color:var(--t1)}
-.btn-next{flex:1;padding:12px;background:linear-gradient(135deg,#2d5a2d,#4a9a4a);color:#fff;border:none;border-radius:var(--rs);font-family:var(--font);font-size:14px;font-weight:700;cursor:pointer;transition:all .2s;letter-spacing:-0.02em;box-shadow:0 4px 16px rgba(45,90,45,0.35)}
-.btn-next:hover{box-shadow:0 6px 24px rgba(45,90,45,0.55)}
+.btn-next{flex:1;padding:12px;background:var(--gold);color:#000;border:none;border-radius:var(--rs);font-family:var(--font);font-size:14px;font-weight:700;cursor:pointer;transition:background .15s;letter-spacing:-0.02em}
+.btn-next:hover{background:var(--gold-l)}
 .retention{background:linear-gradient(135deg,rgba(45,90,45,0.18),rgba(74,154,74,0.1));border:1px solid var(--bd2);border-radius:var(--rs);padding:10px 14px;font-size:12px;color:var(--gold-l);font-weight:600;margin-bottom:12px;letter-spacing:-0.01em;display:none}
 .retention.show{display:block}
-.sub-btn{width:100%;padding:12px;background:linear-gradient(135deg,#2d5a2d,#4a9a4a);color:#fff;border:none;border-radius:var(--rs);font-family:var(--font);font-size:14px;font-weight:700;cursor:pointer;transition:all .2s;letter-spacing:-0.02em;box-shadow:0 4px 16px rgba(45,90,45,0.4)}
-.sub-btn:hover{background:linear-gradient(135deg,#3a7a3a,#5ab05a);box-shadow:0 6px 24px rgba(45,90,45,0.55)}
+.sub-btn{width:100%;padding:12px;background:var(--gold);color:#000;border:none;border-radius:var(--rs);font-family:var(--font);font-size:14px;font-weight:700;cursor:pointer;transition:background .15s;letter-spacing:-0.02em}
+.sub-btn:hover{background:var(--gold-l)}
 
 /* INFO BAR */
 .infobar{background:var(--bg2);border-top:1px solid var(--bd);padding:13px 40px}
@@ -255,8 +255,8 @@ tbody td{padding:12px 14px;font-size:13px;color:var(--t1);vertical-align:middle;
 .st-sel{padding:4px 10px;border:1px solid var(--bd2);border-radius:var(--rs);background:var(--bg3);color:var(--gold-l);font-family:var(--font);font-size:12px;outline:none;cursor:pointer;letter-spacing:-0.01em}
 .st-sel option{background:var(--bg3)}
 .m-acts{display:flex;gap:8px;margin-top:20px}
-.m-save{flex:1;padding:10px;background:linear-gradient(135deg,#2d5a2d,#4a9a4a);color:#fff;border:none;border-radius:var(--rs);font-family:var(--font);font-size:13px;font-weight:700;cursor:pointer;transition:all .2s;letter-spacing:-0.02em}
-.m-save:hover{box-shadow:0 4px 16px rgba(45,90,45,0.5)}
+.m-save{flex:1;padding:10px;background:var(--gold);color:#000;border:none;border-radius:var(--rs);font-family:var(--font);font-size:13px;font-weight:700;cursor:pointer;transition:background .15s;letter-spacing:-0.02em}
+.m-save:hover{background:var(--gold-l)}
 .m-del{padding:10px 14px;background:none;border:1px solid rgba(224,92,92,0.3);border-radius:var(--rs);color:rgba(224,92,92,0.8);font-family:var(--font);font-size:13px;cursor:pointer;transition:all .15s;letter-spacing:-0.01em}
 .m-del:hover{background:rgba(224,92,92,0.08);border-color:rgba(224,92,92,0.5)}
 
@@ -264,8 +264,8 @@ tbody td{padding:12px 14px;font-size:13px;color:var(--t1);vertical-align:middle;
 .cta{background:var(--bg2);border-top:1px solid var(--bd);padding:72px 40px;text-align:center}
 .cta h2{font-size:clamp(22px,2.4vw,34px);font-weight:800;color:var(--w);letter-spacing:-0.04em;margin-bottom:12px}
 .cta p{font-size:14px;color:var(--t3);max-width:400px;margin:0 auto 28px;line-height:1.7;letter-spacing:-0.01em}
-.cta-btn{display:inline-flex;align-items:center;gap:8px;padding:13px 28px;background:linear-gradient(135deg,#2d5a2d,#4a9a4a);color:#fff;border:none;border-radius:var(--rs);font-family:var(--font);font-size:14px;font-weight:700;cursor:pointer;transition:all .2s;text-decoration:none;letter-spacing:-0.02em;box-shadow:0 4px 20px rgba(45,90,45,0.4)}
-.cta-btn:hover{box-shadow:0 6px 28px rgba(45,90,45,0.6)}
+.cta-btn{display:inline-flex;align-items:center;gap:8px;padding:13px 28px;background:var(--gold);color:#000;border:none;border-radius:var(--rs);font-family:var(--font);font-size:14px;font-weight:700;cursor:pointer;transition:background .15s;text-decoration:none;letter-spacing:-0.02em}
+.cta-btn:hover{background:var(--gold-l)}
 
 /* SUCCESS */
 .sov{display:none;position:fixed;inset:0;z-index:999;background:rgba(0,0,0,0.8);backdrop-filter:blur(6px);align-items:center;justify-content:center}
@@ -275,7 +275,7 @@ tbody td{padding:12px 14px;font-size:13px;color:var(--t1);vertical-align:middle;
 .sov-ic svg{width:26px;height:26px;stroke:#52c97a;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
 .sov-card h2{font-size:18px;font-weight:800;color:var(--w);letter-spacing:-0.04em;margin-bottom:8px}
 .sov-card p{font-size:13px;color:var(--t3);line-height:1.7;margin-bottom:22px;letter-spacing:-0.01em}
-.sov-close{padding:10px 28px;background:linear-gradient(135deg,#2d5a2d,#4a9a4a);color:#fff;border:none;border-radius:var(--rs);font-family:var(--font);font-size:13px;font-weight:700;cursor:pointer;letter-spacing:-0.02em}
+.sov-close{padding:10px 28px;background:var(--gold);color:#000;border:none;border-radius:var(--rs);font-family:var(--font);font-size:13px;font-weight:700;cursor:pointer;letter-spacing:-0.02em}
 
 /* FOOTER */
 footer{background:#080808;border-top:1px solid var(--bd);padding:36px 40px 24px;color:var(--t3);font-size:12px;line-height:1.8;letter-spacing:-0.01em}
@@ -367,14 +367,6 @@ footer{background:#080808;border-top:1px solid var(--bd);padding:36px 40px 24px;
         <h3>무료 상담 신청</h3>
         <p>입력하시면 당일 담당 세무사가 연락드립니다</p>
       </div>
-      <!-- PROGRESS -->
-      <div class="step-prog">
-        <div class="sp-item"><div class="sp-dot active" id="sp1">1</div><div class="sp-line" id="sl1"></div></div>
-        <div class="sp-item"><div class="sp-dot" id="sp2">2</div><div class="sp-line" id="sl2"></div></div>
-        <div class="sp-item"><div class="sp-dot" id="sp3">3</div><div class="sp-line" id="sl3"></div></div>
-        <div class="sp-item" style="flex:0"><div class="sp-dot" id="sp4">4</div></div>
-      </div>
-      <div class="step-hint" id="step-hint">기본 정보를 입력해주세요</div>
       <div class="fc-line"></div>
       <div class="fc-body">
         <div class="retention" id="retention"></div>
@@ -439,7 +431,7 @@ footer{background:#080808;border-top:1px solid var(--bd);padding:36px 40px 24px;
           <label class="agree"><input type="checkbox" id="f-agree"> 개인정보 수집·이용에 동의합니다 (필수)</label>
           <div class="step-nav">
             <button class="btn-prev" onclick="goStep(3)">← 이전</button>
-            <button class="btn-next" id="sub-btn" onclick="submitForm()" style="background:linear-gradient(135deg,#1e4a1e,#2d5a2d,#4a9a4a)">신청 완료 →</button>
+            <button class="btn-next" id="sub-btn" onclick="submitForm()">신청 완료 →</button>
           </div>
         </div>
       </div>
@@ -706,20 +698,7 @@ function goStep(n){
   }
   document.getElementById('step'+n).classList.add('active');
 
-  // progress dots
-  for(var i=1;i<=4;i++){
-    var dot=document.getElementById('sp'+i);
-    dot.classList.remove('active','done');
-    if(i<n)dot.classList.add('done');
-    else if(i===n)dot.classList.add('active');
-    if(i<4){
-      var line=document.getElementById('sl'+i);
-      line.classList.toggle('done',i<n);
-    }
-  }
-
-  // hint & retention
-  document.getElementById('step-hint').textContent=stepHints[n];
+  // retention
   var ret=document.getElementById('retention');
   if(n>1&&retentionMsgs[n]){ret.textContent=retentionMsgs[n];ret.classList.add('show');}
   else{ret.classList.remove('show');}
