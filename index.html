@@ -27,12 +27,12 @@ nav{position:fixed;top:0;left:0;right:0;z-index:300;height:56px;background:rgba(
 .n-links{display:flex;align-items:center;gap:28px}
 .n-links a{font-size:13px;font-weight:400;color:var(--t2);text-decoration:none;letter-spacing:-0.01em;transition:color .15s}
 .n-links a:hover{color:var(--t1)}
-.n-cta{padding:8px 20px;background:var(--gold);color:#000;border:2px solid var(--gold);border-radius:var(--rs);font-family:var(--font);font-size:13px;font-weight:800;cursor:pointer;transition:all .15s;text-decoration:none;letter-spacing:-0.01em;animation:ctaPulse 2.4s ease-in-out infinite}
+.n-cta{padding:8px 20px;background:var(--gold);color:#000;text-shadow:none;border:2px solid var(--gold);border-radius:var(--rs);font-family:var(--font);font-size:13px;font-weight:800;cursor:pointer;transition:all .15s;text-decoration:none;letter-spacing:-0.01em;animation:ctaPulse 2.4s ease-in-out infinite}
 .n-cta:hover{background:var(--gold-l);border-color:var(--gold-l);animation:none;box-shadow:0 0 24px rgba(201,168,76,0.7)}
 @keyframes ctaPulse{
-  0%{box-shadow:0 0 6px rgba(201,168,76,0.5);opacity:1}
-  50%{box-shadow:0 0 22px rgba(201,168,76,0.9);opacity:0.7}
-  100%{box-shadow:0 0 6px rgba(201,168,76,0.5);opacity:1}
+  0%{box-shadow:0 0 6px rgba(201,168,76,0.4)}
+  50%{box-shadow:0 0 22px rgba(201,168,76,1),0 0 40px rgba(201,168,76,0.4)}
+  100%{box-shadow:0 0 6px rgba(201,168,76,0.4)}
 }
 .mob-btn{display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:4px;padding:4px}
 .mob-btn span{width:18px;height:1.5px;background:var(--t2);border-radius:2px;display:block}
