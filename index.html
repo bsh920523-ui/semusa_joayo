@@ -9,9 +9,9 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
   --bg:#0d0d0d;--bg2:#161616;--bg3:#1f1f1f;--bg4:#282828;
-  --gold:#c9a84c;--gold-l:#ddb96a;--gold-p:rgba(201,168,76,0.12);
+  --gold:#3d9e68;--gold-l:#5dbf87;--gold-p:rgba(61,158,104,0.12);
   --w:#fff;--t1:#f2f2f2;--t2:#999;--t3:#555;
-  --bd:rgba(255,255,255,0.07);--bd2:rgba(201,168,76,0.25);
+  --bd:rgba(255,255,255,0.07);--bd2:rgba(61,158,104,0.28);
   --r:12px;--r2:8px;--rs:6px;
   --font:'Pretendard',-apple-system,'Apple SD Gothic Neo','Noto Sans KR',sans-serif;
 }
@@ -21,14 +21,15 @@ body{font-family:var(--font);background:var(--bg);color:var(--t1);min-height:100
 /* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:300;height:56px;background:rgba(13,13,13,0.92);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--bd);display:flex;align-items:center;justify-content:space-between;padding:0 40px}
 .n-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
-.n-mark{width:28px;height:28px;background:var(--gold);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:#000;letter-spacing:-0.03em}
+.n-logo-img{width:36px;height:36px;border-radius:6px;object-fit:contain;flex-shrink:0;display:block;border:1px dashed rgba(255,255,255,.15);background:rgba(255,255,255,.04)}
+.n-logo-img.loaded{border:none;background:none}
 .n-name{font-size:14px;font-weight:700;color:var(--w);letter-spacing:-0.03em}
 .n-sub{font-size:9px;font-weight:400;color:var(--t3);letter-spacing:0.08em;margin-top:1px}
 .n-links{display:flex;align-items:center;gap:28px}
 .n-links a{font-size:13px;font-weight:400;color:var(--t2);text-decoration:none;letter-spacing:-0.01em;transition:color .15s}
 .n-links a:hover{color:var(--t1)}
-.n-cta{padding:8px 22px;background:#FFE500;color:#000;border:none;border-radius:var(--rs);font-family:var(--font);font-size:14px;font-weight:900;cursor:pointer;transition:all .15s;text-decoration:none;letter-spacing:-0.02em;animation:ctaPulse 2s ease-in-out infinite}
-.n-cta:hover{background:#fff176;animation:none}
+.n-cta{padding:8px 22px;background:#2ecc71;color:#000;border:none;border-radius:var(--rs);font-family:var(--font);font-size:14px;font-weight:900;cursor:pointer;transition:all .15s;text-decoration:none;letter-spacing:-0.02em;animation:ctaPulse 2s ease-in-out infinite}
+.n-cta:hover{background:#52d98e;animation:none}
 @keyframes ctaPulse{
   0%{transform:scale(1);filter:brightness(1)}
   50%{transform:scale(1.05);filter:brightness(1.15)}
@@ -377,6 +378,7 @@ footer{background:#080808;border-top:1px solid var(--bd);padding:36px 40px 24px;
 
 <nav>
   <a href="#" class="n-logo">
+    <img src="logo.png" alt="" class="n-logo-img" onload="this.classList.add('loaded')" onerror="this.style.opacity='0.3'">
     <div><div class="n-name">세무회계 변백</div><div class="n-sub">TAX ACCOUNTING FIRM</div></div>
   </a>
   <div class="n-links">
