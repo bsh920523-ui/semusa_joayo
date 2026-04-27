@@ -111,6 +111,20 @@ nav{position:fixed;top:0;left:0;right:0;z-index:300;height:56px;background:rgba(
 .sub-btn{width:100%;padding:12px;background:var(--gold);color:#000;border:none;border-radius:var(--rs);font-family:var(--font);font-size:14px;font-weight:700;cursor:pointer;transition:background .15s;letter-spacing:-0.02em}
 .sub-btn:hover{background:var(--gold-l)}
 
+/* FLOATING SNS */
+.float-btns{position:fixed;right:20px;bottom:32px;z-index:500;display:flex;flex-direction:column;gap:10px;align-items:flex-end}
+.float-btn{display:flex;align-items:center;gap:8px;padding:10px 16px;border-radius:50px;font-family:var(--font);font-size:13px;font-weight:700;cursor:pointer;text-decoration:none;border:none;transition:all .2s;letter-spacing:-0.01em;box-shadow:0 4px 16px rgba(0,0,0,0.4);white-space:nowrap}
+.float-kakao{background:#FEE500;color:#000}
+.float-kakao:hover{background:#ffd700;transform:translateY(-2px);box-shadow:0 8px 24px rgba(254,229,0,0.4)}
+.float-insta{background:linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045);color:#fff}
+.float-insta:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(253,29,29,0.4)}
+.float-btn svg{width:18px;height:18px;flex-shrink:0}
+@media(max-width:600px){
+  .float-btns{right:12px;bottom:20px}
+  .float-btn span{display:none}
+  .float-btn{padding:12px;border-radius:50%}
+}
+
 /* SCROLL OFFSET (fixed nav 보정) */
 section[id],div[id]{scroll-margin-top:64px}
 
@@ -643,8 +657,8 @@ footer{background:#080808;border-top:1px solid var(--bd);padding:36px 40px 24px;
     </div>
     <div class="flinks">
       <a href="#">서비스 소개</a><a href="#">전문가 소개</a><a href="#">고객 후기</a>
-      <a href="#">카카오채널: 세무회계 변백</a>
-      <a href="#">인스타그램: @cta_byun</a>
+      <a href="http://pf.kakao.com/_pxouYn" target="_blank">카카오채널: 세무회계 변백</a>
+      <a href="https://instagram.com/cta_baek" target="_blank">인스타그램: @cta_baek</a>
       <a href="#">개인정보처리방침</a>
     </div>
     <div>
@@ -655,6 +669,18 @@ footer{background:#080808;border-top:1px solid var(--bd);padding:36px 40px 24px;
   <hr class="fdiv">
   <p>© 2025 세무회계 변백 (TAX ACCOUNTING FIRM). All rights reserved.</p>
 </footer>
+
+<!-- FLOATING SNS -->
+<div class="float-btns">
+  <a href="http://pf.kakao.com/_pxouYn" target="_blank" class="float-btn float-kakao">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3C6.477 3 2 6.477 2 10.8c0 2.7 1.6 5.1 4 6.6l-1 3.6 4.2-2.8c.9.2 1.8.3 2.8.3 5.523 0 10-3.477 10-7.8S17.523 3 12 3z"/></svg>
+    <span>카카오 상담</span>
+  </a>
+  <a href="https://instagram.com/cta_baek" target="_blank" class="float-btn float-insta">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+    <span>@cta_baek</span>
+  </a>
+</div>
 
 <!-- PIN MODAL -->
 <div class="mov" id="pin-ov">
