@@ -111,6 +111,11 @@ nav{position:fixed;top:0;left:0;right:0;z-index:300;height:56px;background:rgba(
 .sub-btn{width:100%;padding:12px;background:var(--gold);color:#000;border:none;border-radius:var(--rs);font-family:var(--font);font-size:14px;font-weight:700;cursor:pointer;transition:background .15s;letter-spacing:-0.02em}
 .sub-btn:hover{background:var(--gold-l)}
 
+/* PROF SLIDER */
+.prof-slider{position:relative;margin-bottom:32px;min-height:60px}
+.prof-slide{position:absolute;top:0;left:0;width:100%;opacity:0;transition:opacity .6s ease;pointer-events:none;margin-bottom:0}
+.prof-slide.active{position:relative;opacity:1;pointer-events:auto}
+
 /* FLOATING SNS */
 .float-btns{position:fixed;right:20px;bottom:32px;z-index:500;display:flex;flex-direction:column;gap:10px;align-items:flex-end}
 .float-btn{display:flex;align-items:center;gap:8px;padding:10px 16px;border-radius:50px;font-family:var(--font);font-size:13px;font-weight:700;cursor:pointer;text-decoration:none;border:none;transition:all .2s;letter-spacing:-0.01em;box-shadow:0 4px 16px rgba(0,0,0,0.4);white-space:nowrap}
@@ -351,7 +356,6 @@ footer{background:#080808;border-top:1px solid var(--bd);padding:36px 40px 24px;
   <div class="n-links">
     <a href="#services">서비스</a>
     <a href="#process">절차</a>
-    <a href="#team">전문가</a>
     <a href="#reviews">후기</a>
     <a href="#consult" class="n-cta">무료 상담</a>
   </div>
@@ -367,16 +371,26 @@ footer{background:#080808;border-top:1px solid var(--bd);padding:36px 40px 24px;
       <div class="h-eyebrow">첫 상담 무료 · 24시간 내 회신</div>
       <h1>세금 문제,<br><span>전문가와 함께라면</span><br>두렵지 않습니다</h1>
       <p class="hero-desc">세무회계 변백의 전문 세무사가 개인·법인 세무부터 세무조사 대응까지 정확하고 신속하게 해결해 드립니다.</p>
-      <div class="prof">
-        <div class="prof-img">
-          <img src="byun.png" alt="변재형 세무사">
+      <div class="prof-slider">
+        <div class="prof prof-slide active" id="prof0">
+          <div class="prof-img"><img src="byun.png" alt="변재형 세무사"></div>
+          <div>
+            <div class="prof-name">변재형 세무사</div>
+            <div class="prof-role">대표 세무사 · 세무회계 변백</div>
+            <div class="prof-row">
+              <span>📞 <strong>02-2088-2456</strong></span>
+              <span>📱 <strong>010-4924-5774</strong></span>
+            </div>
+          </div>
         </div>
-        <div>
-          <div class="prof-name">변재형 세무사</div>
-          <div class="prof-role">대표 세무사 · 세무회계 변백</div>
-          <div class="prof-row">
-            <span>📞 <strong>02-2088-2456</strong></span>
-            <span>📱 <strong>010-4924-5774</strong></span>
+        <div class="prof prof-slide" id="prof1">
+          <div class="prof-img" style="background:var(--gold-p);display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:800;color:var(--gold)">백</div>
+          <div>
+            <div class="prof-name">백민경 세무사</div>
+            <div class="prof-role">세무사 · 세무회계 변백</div>
+            <div class="prof-row">
+              <span>📞 <strong>02-2088-2456</strong></span>
+            </div>
           </div>
         </div>
       </div>
@@ -523,54 +537,6 @@ footer{background:#080808;border-top:1px solid var(--bd);padding:36px 40px 24px;
   </div>
 </section>
 
-<!-- TEAM -->
-<section class="sec" id="team">
-  <div class="sec-inner">
-    <div class="sec-eyebrow">전문가</div>
-    <h2 class="sec-h">경험과 신뢰로 함께합니다</h2>
-    <p class="sec-sub" style="margin-bottom:24px">2명의 세무사가 직접 검토합니다.</p>
-    <div class="exp-slider">
-      <div class="exp-track" id="expTrack">
-        <!-- 카드 1 -->
-        <div class="exp-card">
-          <div class="exp-photo"><img src="byun.png" alt="변재형 세무사"></div>
-          <div>
-            <div class="exp-name">변재형 세무사</div>
-            <div class="exp-role">대표 세무사 · 세무회계 변백 (TAX ACCOUNTING FIRM)</div>
-            <div class="exp-tags">
-              <span class="exp-tag">종합소득세</span><span class="exp-tag">법인세</span><span class="exp-tag">양도·상속·증여세</span><span class="exp-tag">세무조사</span><span class="exp-tag">절세 컨설팅</span>
-            </div>
-            <div class="exp-cts">
-              <span class="exp-ct">📞 <strong>02-2088-2456</strong></span>
-              <span class="exp-ct">📱 <strong>010-4924-5774</strong></span>
-              <span class="exp-ct">✉️ <strong>byun@byunbaek.com</strong></span>
-              <span class="exp-ct">📍 서울 양천구 목동동로 339, 목동트윈빌 2층 236호</span>
-            </div>
-          </div>
-        </div>
-        <!-- 카드 2 -->
-        <div class="exp-card">
-          <div class="exp-photo" style="background:var(--gold-p);display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:800;color:var(--gold)">백</div>
-          <div>
-            <div class="exp-name">백민경 세무사</div>
-            <div class="exp-role">세무사 · 세무회계 변백 (TAX ACCOUNTING FIRM)</div>
-            <div class="exp-tags">
-              <span class="exp-tag">종합소득세</span><span class="exp-tag">부가가치세</span><span class="exp-tag">법인세</span><span class="exp-tag">절세 컨설팅</span>
-            </div>
-            <div class="exp-cts">
-              <span class="exp-ct">📞 <strong>02-2088-2456</strong></span>
-              <span class="exp-ct">📍 서울 양천구 목동동로 339, 목동트윈빌 2층 236호</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="exp-dots">
-        <div class="exp-dot on" onclick="expGo(0)"></div>
-        <div class="exp-dot" onclick="expGo(1)"></div>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- REVIEWS -->
 <section class="sec" id="reviews" style="background:var(--bg2);border-top:1px solid var(--bd)">
@@ -953,17 +919,14 @@ async function deleteRecord(){
   }catch(e){alert('삭제 실패');}
 }
 
-// EXPERT SLIDER
-var expIdx=0,expTotal=2,expTimer;
-function expGo(n){
-  expIdx=n;
-  document.getElementById('expTrack').style.transform='translateX(-'+n*100+'%)';
-  document.querySelectorAll('.exp-dot').forEach(function(d,i){d.classList.toggle('on',i===n);});
+// PROF SLIDER
+var profIdx=0;
+function profNext(){
+  document.getElementById('prof'+profIdx).classList.remove('active');
+  profIdx=(profIdx+1)%2;
+  document.getElementById('prof'+profIdx).classList.add('active');
 }
-function expNext(){expGo((expIdx+1)%expTotal);}
-expTimer=setInterval(expNext,4000);
-document.querySelector('.exp-slider').addEventListener('mouseenter',function(){clearInterval(expTimer);});
-document.querySelector('.exp-slider').addEventListener('mouseleave',function(){expTimer=setInterval(expNext,4000);});
+setInterval(profNext,4000);
 
 document.getElementById('mov').addEventListener('click',function(e){if(e.target===this)closeModal();});
 document.getElementById('sov').addEventListener('click',function(e){if(e.target===this)this.classList.remove('show');});
