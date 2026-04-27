@@ -112,9 +112,13 @@ nav{position:fixed;top:0;left:0;right:0;z-index:300;height:56px;background:rgba(
 .sub-btn:hover{background:var(--gold-l)}
 
 /* PROF SLIDER */
-.prof-slider{position:relative;margin-bottom:32px;min-height:60px}
+.prof-slider{position:relative;margin-bottom:32px;min-height:60px;display:flex;align-items:center;gap:10px}
 .prof-slide{position:absolute;top:0;left:0;width:100%;opacity:0;transition:opacity .6s ease;pointer-events:none;margin-bottom:0}
 .prof-slide.active{position:relative;opacity:1;pointer-events:auto}
+.prof-arr{background:none;border:1px solid var(--bd);border-radius:50%;width:28px;height:28px;flex-shrink:0;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .15s;color:var(--t3)}
+.prof-arr:hover{border-color:var(--gold);color:var(--gold)}
+.prof-arr svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.prof-wrap{flex:1;position:relative;min-height:60px}
 
 /* FLOATING SNS */
 .float-btns{position:fixed;right:20px;bottom:32px;z-index:500;display:flex;flex-direction:column;gap:10px;align-items:flex-end}
@@ -372,6 +376,8 @@ footer{background:#080808;border-top:1px solid var(--bd);padding:36px 40px 24px;
       <h1>세금 문제,<br><span>전문가와 함께라면</span><br>두렵지 않습니다</h1>
       <p class="hero-desc">세무회계 변백의 전문 세무사가 개인·법인 세무부터 세무조사 대응까지 정확하고 신속하게 해결해 드립니다.</p>
       <div class="prof-slider">
+        <button class="prof-arr" onclick="profMove(-1)"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg></button>
+        <div class="prof-wrap">
         <div class="prof prof-slide active" id="prof0">
           <div class="prof-img"><img src="byun.png" alt="변재형 세무사"></div>
           <div>
@@ -393,6 +399,8 @@ footer{background:#080808;border-top:1px solid var(--bd);padding:36px 40px 24px;
             </div>
           </div>
         </div>
+        </div>
+        <button class="prof-arr" onclick="profMove(1)"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></button>
       </div>
       <div class="stats">
         <div class="stat"><span class="stat-n">3,200+</span><div class="stat-l">상담 완료</div></div>
@@ -920,13 +928,14 @@ async function deleteRecord(){
 }
 
 // PROF SLIDER
-var profIdx=0;
-function profNext(){
+var profIdx=0,profTimer;
+function profGo(n){
   document.getElementById('prof'+profIdx).classList.remove('active');
-  profIdx=(profIdx+1)%2;
+  profIdx=(n+2)%2;
   document.getElementById('prof'+profIdx).classList.add('active');
 }
-setInterval(profNext,4000);
+function profMove(d){clearInterval(profTimer);profGo(profIdx+d);profTimer=setInterval(function(){profGo(profIdx+1);},4000);}
+profTimer=setInterval(function(){profGo(profIdx+1);},4000);
 
 document.getElementById('mov').addEventListener('click',function(e){if(e.target===this)closeModal();});
 document.getElementById('sov').addEventListener('click',function(e){if(e.target===this)this.classList.remove('show');});
