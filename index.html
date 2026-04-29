@@ -9,9 +9,9 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
   --bg:#0d0d0d;--bg2:#161616;--bg3:#1f1f1f;--bg4:#282828;
-  --gold:#3d9e68;--gold-l:#5dbf87;--gold-p:rgba(61,158,104,0.12);
+  --gold:#c9a84c;--gold-l:#ddb96a;--gold-p:rgba(201,168,76,0.12);
   --w:#fff;--t1:#f2f2f2;--t2:#999;--t3:#555;
-  --bd:rgba(255,255,255,0.07);--bd2:rgba(61,158,104,0.28);
+  --bd:rgba(255,255,255,0.07);--bd2:rgba(201,168,76,0.25);
   --r:12px;--r2:8px;--rs:6px;
   --font:'Pretendard',-apple-system,'Apple SD Gothic Neo','Noto Sans KR',sans-serif;
 }
@@ -28,8 +28,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:300;height:56px;background:rgba(
 .n-links{display:flex;align-items:center;gap:28px}
 .n-links a{font-size:13px;font-weight:400;color:var(--t2);text-decoration:none;letter-spacing:-0.01em;transition:color .15s}
 .n-links a:hover{color:var(--t1)}
-.n-cta{padding:8px 22px;background:#2ecc71;color:#000;border:none;border-radius:var(--rs);font-family:var(--font);font-size:14px;font-weight:900;cursor:pointer;transition:all .15s;text-decoration:none;letter-spacing:-0.02em;animation:ctaPulse 2s ease-in-out infinite}
-.n-cta:hover{background:#52d98e;animation:none}
+.n-cta{padding:8px 22px;background:#FFE500;color:#fff;border:none;border-radius:var(--rs);font-family:var(--font);font-size:14px;font-weight:900;cursor:pointer;transition:all .15s;text-decoration:none;letter-spacing:-0.02em;animation:ctaPulse 2s ease-in-out infinite;text-shadow:0 1px 3px rgba(0,0,0,0.4)}
+.n-cta:hover{background:#ffd000;animation:none}
 @keyframes ctaPulse{
   0%{transform:scale(1);filter:brightness(1)}
   50%{transform:scale(1.05);filter:brightness(1.15)}
@@ -683,6 +683,7 @@ footer{background:#080808;border-top:1px solid var(--bd);padding:36px 40px 24px;
       <a href="#">서비스 소개</a><a href="#">전문가 소개</a><a href="#">고객 후기</a>
       <a href="https://pf.kakao.com/_pxouYn/chat" target="_blank">카카오채널: 세무회계 변백</a>
       <a href="https://instagram.com/cta_baek" target="_blank">인스타그램: @cta_baek</a>
+      <a href="https://blog.naver.com/byunbaek_tax" target="_blank">네이버 블로그</a>
       <a href="#">개인정보처리방침</a>
     </div>
     <div>
