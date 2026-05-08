@@ -94,9 +94,10 @@ nav{position:fixed;top:0;left:0;right:0;z-index:300;height:56px;background:rgba(
 .chip.on{background:var(--gold);color:#000;border-color:var(--gold);font-weight:600}
 
 .cks{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-top:5px}
-.ck{display:flex;align-items:center;gap:7px;padding:7px 10px;border:1px solid var(--bd);border-radius:var(--rs);cursor:pointer;font-size:12px;color:var(--t3);transition:all .15s;background:var(--bg3);letter-spacing:-0.01em}
-.ck:hover{border-color:var(--gold);color:var(--t1)}
-.ck input{accent-color:var(--gold);width:13px;height:13px;flex-shrink:0}
+.ck{display:flex;align-items:center;gap:8px;padding:10px 12px;border:1px solid var(--bd);border-radius:var(--rs);cursor:pointer;font-size:13px;color:var(--t2);transition:all .15s;background:var(--bg3);letter-spacing:-0.01em;user-select:none}
+.ck:hover{border-color:var(--gold);color:var(--t1);background:var(--gold-p)}
+.ck:has(input:checked){border-color:var(--gold);color:var(--gold-l);background:var(--gold-p);font-weight:600}
+.ck input{accent-color:var(--gold);width:15px;height:15px;flex-shrink:0;cursor:pointer}
 
 .priv{background:var(--bg);border:1px solid var(--bd);border-radius:var(--rs);padding:10px 12px;font-size:11px;color:var(--t3);line-height:1.7;margin-top:4px;letter-spacing:-0.01em}
 .agree{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--t2);cursor:pointer;margin:10px 0 14px;letter-spacing:-0.01em}
