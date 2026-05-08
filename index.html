@@ -865,14 +865,18 @@ async function submitForm(){
     }catch(e){console.warn('Supabase 저장 실패:',e)}
   }
 
-  emailjs.send('service_0vns484','template_pnafw0f',{
-    name:n,
-    phone:p,
-    email:document.getElementById('f-email').value.trim()||'(미입력)',
-    category:fields.join(', ')||'(미선택)',
-    time_pref:times.join(', ')||'(미선택)',
-    message:c
-  }).catch(function(e){console.warn('이메일 발송 실패:',e)});
+  try{
+    await emailjs.send('service_0vns484','template_pnafw0f',{
+      name:n,
+      phone:p,
+      email:document.getElementById('f-email').value.trim()||'(미입력)',
+      category:fields.join(', ')||'(미선택)',
+      time_pref:times.join(', ')||'(미선택)',
+      message:c
+    });
+  }catch(ejErr){
+    alert('이메일 발송 오류: '+JSON.stringify(ejErr));
+  }
 
   document.getElementById('sov').classList.add('show');
   ['f-name','f-phone','f-email','f-content'].forEach(function(id){document.getElementById(id).value=''});
