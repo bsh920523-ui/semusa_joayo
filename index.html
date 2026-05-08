@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>세무상담 신청 | 세무회계 변백</title>
 <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>emailjs.init('RXwZpdjhDI5C3XCB5');</script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -861,6 +863,15 @@ async function submitForm(){
       if(!res.ok)throw new Error('서버 오류');
     }catch(e){console.warn('Supabase 저장 실패:',e)}
   }
+
+  emailjs.send('service_0vns484','template_pnafw0f',{
+    name:n,
+    phone:p,
+    email:document.getElementById('f-email').value.trim()||'(미입력)',
+    category:fields.join(', ')||'(미선택)',
+    time_pref:times.join(', ')||'(미선택)',
+    message:c
+  }).catch(function(e){console.warn('이메일 발송 실패:',e)});
 
   document.getElementById('sov').classList.add('show');
   ['f-name','f-phone','f-email','f-content'].forEach(function(id){document.getElementById(id).value=''});
